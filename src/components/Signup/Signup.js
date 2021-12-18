@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../../context/UserContext'
 import { signupService } from '../../services'
 
 const Signup = () => {
+    const { user, login } = useContext(UserContext);
+
     const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const dataObject = Object.fromEntries(formData);
         const user = await signupService(dataObject)
-        console.log(user);
+        login(user.detail);
         e.target.reset();
     };
     return (
@@ -19,6 +22,7 @@ const Signup = () => {
             <input type="password" placeholder="Password" name="password" />
             <br /><br />
             <input type="submit" value="Signup" />
+            {user?.token}
         </form >
     )
 }
