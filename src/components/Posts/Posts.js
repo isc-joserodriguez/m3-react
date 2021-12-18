@@ -1,9 +1,14 @@
 import React from 'react'
 
-const Posts = () => {
+const Posts = ({ postList }) => {
     return (
         <div>
-            Posts List
+            {postList.map((el) => (
+                <>
+                    <br />
+                    <div>{JSON.stringify(el)}</div>
+                </>
+            ))}
         </div>
     )
 }
