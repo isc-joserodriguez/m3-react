@@ -1,11 +1,13 @@
 import React from 'react'
+import { signupService } from '../../services'
 
 const Signup = () => {
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const dataObject = Object.fromEntries(formData);
-        console.log(dataObject);
+        const user = await signupService(dataObject)
+        console.log(user);
         e.target.reset();
     };
     return (
