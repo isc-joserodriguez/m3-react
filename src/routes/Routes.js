@@ -7,7 +7,7 @@ import Posts from '../components/Posts/Posts';
 const RoutesComponent = () => (
     <Routes>
         <Route path="/" element={<h1>Welcome!</h1>} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login log="" />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/posts" element={<Posts />} />
     </Routes>

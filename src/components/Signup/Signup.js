@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react';
+// Importamos el contexto
+import { UserContext } from '../../context/UserContext'
+import { signupService } from '../../services'
 
 const Signup = () => {
-    const onSubmit = (e) => {
+    // Desestrcuturamos los elementos necesarios
+    const { saveToken, user } = useContext(UserContext);
+    const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const dataObject = Object.fromEntries(formData);
-        console.log(dataObject);
+        const user = await signupService(dataObject)
+        // Usamos lo que necesitamos
+        saveToken(user.detail)
         e.target.reset();
     };
     return (
@@ -17,6 +24,10 @@ const Signup = () => {
             <input type="password" placeholder="Password" name="password" />
             <br /><br />
             <input type="submit" value="Signup" />
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            {JSON.stringify(user)}
         </form >
     )
 }
