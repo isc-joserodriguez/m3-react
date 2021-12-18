@@ -4,6 +4,7 @@ import Login from '../components/Login/Login';
 import Signup from '../components/Signup/Signup';
 import Posts from '../components/Posts/Posts';
 import Categories from '../components/Categories/Categories';
+import Checkout from '../components/Checkout/Checkout';
 
 const RoutesComponent = () => (
     <Routes>
@@ -12,6 +13,7 @@ const RoutesComponent = () => (
         <Route path="/signup" element={<Signup />} />
         <Route path="/posts" element={<Posts postList={[{ title: 'Nueva' }, { title: 'Otra' }, { title: 'Bien!!' }]} />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/checkout" element={<Checkout />} />
     </Routes>
 )
 
