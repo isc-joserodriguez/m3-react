@@ -1,16 +1,16 @@
-import React, { useEffect, useContext } from 'react'
-import { CategoryContext } from '../../context/CategoryContext'
-import { getCategories } from '../../services/categories'
+import React, { useEffect, useContext } from "react";
+import { CategoryContext } from "../../context/CategoryContext";
+import { getCategories } from "../../services/categories";
 
 const Categories = () => {
   const { categories, saveCategories } = useContext(CategoryContext);
   const peticion = async () => {
-    const resp = await getCategories()
+    const resp = await getCategories();
     saveCategories(resp.detail);
-  }
+  };
   useEffect(() => {
-    peticion()
-  }, [])
+    peticion();
+  }, []);
 
   return (
     <div>
@@ -21,7 +21,7 @@ const Categories = () => {
         </React.Fragment>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;
