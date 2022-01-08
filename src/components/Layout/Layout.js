@@ -6,7 +6,7 @@ import { UserContext } from "../../context/UserContext";
 import Nav from '../Nav/Nav'
 
 const Layout = ({ children }) => {
-  const { saveToken, clearToken, token } = useContext(UserContext)
+  const { saveToken, clearToken } = useContext(UserContext)
   const verifyToken = () => {
     const token = localStorage.getItem('token');
     if (token) {
