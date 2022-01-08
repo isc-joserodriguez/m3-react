@@ -8,6 +8,7 @@ export const signupService = async (user) => {
 }
 
 export const loginService = async (user) => {
+  console.log(user);
   const resp = await axios.post(`${URL_ROOT}/login`, user);
   return resp.data
 }
