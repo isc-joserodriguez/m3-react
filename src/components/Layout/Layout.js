@@ -1,12 +1,29 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react';
+
+// Import Provider
+import { UserContext } from "../../context/UserContext";
+
 import Nav from '../Nav/Nav'
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
+  const { saveToken, clearToken, token } = useContext(UserContext)
+  const verifyToken = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      saveToken(token);
+    } else {
+      clearToken();
+    }
+  }
+  useEffect(() => {
+    verifyToken();
+  }, []);
+
   return (
-    <div>
+    <>
       <Nav />
       {children}
-    </div>
+    </>
   )
 }
 

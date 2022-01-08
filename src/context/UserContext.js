@@ -8,20 +8,22 @@ const { Provider, Consumer } = UserContext;
 // Creamos el Componente
 const UserProvider = ({ children }) => {
   // Creamos el State
-  const [user, setUser] = useState({token:'Sin Token'});
+  const [user, setUser] = useState({ token: 'Sin Token' });
 
   // Agregamos funciones necesarias
   const saveToken = (token) => {
+    localStorage.setItem('token', token);
     setUser({ token })
   }
 
   const clearToken = () => {
+    localStorage.clear();
     setUser(null)
   }
 
   // retornamos el Provider, indicandole los elementos que va a manejar
   return (
-    <Provider value={{user, saveToken, clearToken}}>
+    <Provider value={{ user, saveToken, clearToken }}>
       {children}
     </Provider>
   )
