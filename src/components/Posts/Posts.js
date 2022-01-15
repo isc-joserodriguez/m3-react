@@ -1,24 +1,41 @@
-import React, { useContext } from 'react'
-import { CategoryContext } from '../../context/CategoryContext'
+import React from "react";
+import axios from "axios";
 
-const Posts = ({ postList }) => {
-    const { categories } = useContext(CategoryContext)
-    return (
-        <div>
-            {postList.map((el, index) => (
-                <React.Fragment key={index}>
-                    <br />
-                    <div>{JSON.stringify(el)}</div>
-                </React.Fragment>
-            ))}
-            {categories.map((el, index) => (
-                <React.Fragment key={index}>
-                    <br />
-                    <div>{JSON.stringify(el)}</div>
-                </React.Fragment>
-            ))}
-        </div>
-    )
+const URL_ROOT = `${process.env.REACT_APP_API}/post/my-posts`;
+
+async function getPosts() {
+  const resp = await axios.get(`${URL_ROOT}/`, {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  });
+
+  try {
+    return resp.data.detail;
+  } catch (error) {
+    throw new Error("No hay datos");
+  }
 }
 
-export default Posts
+const Posts = ({ postList }) => {
+  const [posts, setPost] = React.useState([]);
+
+  React.useEffect(() => {
+    getPosts().then((response) => setPost(response));
+  }, []);
+
+  if (posts.length == 0) return <div>No hay datos</div>;
+
+  return (
+    <div>
+      POSTS
+      {posts.map((post) => (
+        <p key={post._id}>
+          {post.title} - {post.body}
+        </p>
+      ))}
+    </div>
+  );
+};
+
+export default Posts;
