@@ -10,8 +10,8 @@ const NavComponent = () => {
     const { user: token = null } = useContext(UserContext);
 
     const publicRoutes = [
-        <Nav.Link key={1}><Link to="/login">Login</Link></Nav.Link>,
-        <Nav.Link key={2}><Link to="/signup">Signup</Link></Nav.Link>,
+        <Nav.Link as={Link} to='/Login' key={1}>Login</Nav.Link>,
+        <Nav.Link key={2} as={Link} to='/signup'>Signup</Nav.Link>,
     ]
     const privateRoutes = [
         <Nav.Link key={3}><Link to="/posts">Posts</Link></Nav.Link>,
